@@ -69,7 +69,8 @@
         </record>
 
         <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
-        <menuitem id="menu_guia_movilizacion_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/>
+         
+        <menuitem id="menu_guia_movilizacion_child" name="Facturacion" parent="menu_root_empresa" groups="group_empresa_def"/>
         <menuitem id="submenu_guia_movilizacion" name="Guia de Movilizacion" parent="menu_guia_movilizacion_child" action="act_open_guia_movilizacion_view" groups="group_empresa_def"/>
 
         

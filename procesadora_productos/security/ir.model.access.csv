@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_empresa_empresa,empresa.empresa,model_empresa_empresa,group_empresa_def,1,1,1,1
 access_empresa_guia_movilizacion,empresa.guia_movilizacion,model_empresa_guia_movilizacion,group_empresa_def,1,1,1,1
+access_traslado_factura,traslado.factura,model_traslado_factura,group_empresa_def,1,1,1,1
+access_empresa_mercancia,empresa.mercancia,model_empresa_mercancia,group_empresa_def,1,1,1,1

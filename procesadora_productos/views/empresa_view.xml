@@ -221,7 +221,7 @@
         </record> -->
 
         <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/>
-        <menuitem id="menu_empresa_child" name="Empresa" parent="menu_root_empresa" groups="group_empresa_def"/>
+        <menuitem id="menu_empresa_child" name="Info. Basica" parent="menu_root_empresa" groups="group_empresa_def"/>
         <menuitem id="submenu_empresa" name="Empresa" parent="menu_empresa_child" action="act_open_empresa_view" groups="group_empresa_def"/>
 
         

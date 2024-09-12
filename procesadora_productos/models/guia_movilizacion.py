@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 
 class GuiaMovilizacion(models.Model):
     _name = 'empresa.guia_movilizacion'
-    _description = 'Informacion de la Empresa'
+    _description = 'Informacion de vehiculo usado para llevar mercancia'
 
     vehiculo_id = fields.Char(string='Placa Vehiculo', required=True, size=8)
     vehiculo = fields.Char(string='Vehiculo Usado', required=True)

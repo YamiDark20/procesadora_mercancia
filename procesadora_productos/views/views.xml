@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="procesadora_productos.list">
+      <field name="name">procesadora_productos list</field>
+      <field name="model">procesadora_productos.procesadora_productos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="procesadora_productos.action_window">
+      <field name="name">procesadora_productos window</field>
+      <field name="res_model">procesadora_productos.procesadora_productos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="procesadora_productos.action_server">
+      <field name="name">procesadora_productos server</field>
+      <field name="model_id" ref="model_procesadora_productos_procesadora_productos"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="procesadora_productos" id="procesadora_productos.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="procesadora_productos.menu_1" parent="procesadora_productos.menu_root"/>
+    <menuitem name="Menu 2" id="procesadora_productos.menu_2" parent="procesadora_productos.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="procesadora_productos.menu_1_list" parent="procesadora_productos.menu_1"
+              action="procesadora_productos.action_window"/>
+    <menuitem name="Server to list" id="procesadora_productos" parent="procesadora_productos.menu_2"
+              action="procesadora_productos.action_server"/>
+-->
+  </data>
+</odoo>

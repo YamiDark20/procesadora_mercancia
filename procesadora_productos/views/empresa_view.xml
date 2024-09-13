@@ -19,17 +19,18 @@
                 <kanban>
                     <field name='id'/>
                     <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
+                        <t t-name="kanban-box" class=" p-2 d-flex align-items-middle justify-content-center">
+                            <div class="oe_kanban_global_click ">
                                 <div class="o_kanban_image d-flex flex-column align-middle justify-content-center h-100">
                                     <img t-att-src="kanban_image('empresa.empresa', 'image', record.id.value)"  class=" align-middle"/>
                                     <!-- <img  t-att-src="kanban_image('empresa.empresa', 'record.contacto_id.image_1920', record.id.value)"/> -->
                                 </div>
                                 <div class="oe_kanban_details">
-                                    <strong>
-                                        <ul class="d-flex flex-column align-middle justify-content-center">
-                                            <li>Nombre :<field name="contacto_id"/></li>
-                                            <li>NIF :<field name="nif"/></li>
+                                    <strong class=" h-100">
+                                        <ul class="">
+                                            <li class="mb-2">Nombre :<field name="contacto_id" /></li>
+                                            <li class="mb-2">NIF :<field name="nif" /></li>
+                                            <li>Tipo :<field name="tipo"/></li>
                                         </ul>
                                     </strong>
                                 </div>

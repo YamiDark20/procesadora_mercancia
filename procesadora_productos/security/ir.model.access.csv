@@ -4,3 +4,5 @@ access_empresa_guia_movilizacion,empresa.guia_movilizacion,model_empresa_guia_mo
 access_traslado_factura,traslado.factura,model_traslado_factura,group_empresa_def,1,1,1,1
 access_empresa_mercancia,empresa.mercancia,model_empresa_mercancia,group_empresa_def,1,1,1,1
 access_traslado_mercancia,traslado.mercancia,model_traslado_mercancia,group_empresa_def,1,1,1,1
+access_empresa_almacen,empresa.almacen,model_empresa_almacen,group_empresa_def,1,1,1,1
+access_zona_almacen,zona.almacen,model_zona_almacen,group_empresa_def,1,1,1,1

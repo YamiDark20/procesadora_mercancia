@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_zona_almacen_tree" model="ir.ui.view">
+            <field name="name">empresa.almacen.tree</field>
+            <field name="model">empresa.almacen</field>
+            
+            <!-- <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="nif"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="tipo"/>
+                </field>
+            </field> -->
+            <field name="arch" type="xml">
+                <tree string="Almacen">
+                    <field name="sequence_number" />
+                    <field name="sucursal" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_zona_almacen_form" model="ir.ui.view">
+            <field name="name">empresa.almacen.form</field>
+            <field name="model">empresa.almacen</field>
+            <field name="arch" type="xml">
+                <form string="Almacen">
+                    <sheet>
+                        <h1 class="fw-normal">Almacen <field name="sequence_number" class="fw-bold" /></h1>
+                        <group>
+                            <field name="sucursal" />
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Zonas de Almacen">
+                                <field name="zona_almacen_ids">
+                                    <tree string="Zonas" editable="bottom">
+                                        <field name="ubicacion" />
+                                        <field name="espacio" />
+                                        <field name="estado" />
+                                        <field name="sector" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_zona_almacen_view">
+            <field name="name">Almacen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">empresa.almacen</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Almacen.
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.sequence" id="seq_zona_almacen">
+            <field name="name">Almacen</field>
+            <field name="code">empresa.almacen</field>
+            <field name="prefix">A</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
+
+        <!-- <menuitem id="menu_factura_traslado_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/> -->
+        <menuitem id="submenu_zona_almacen" name="Almacen" parent="menu_empresa_child" action="act_open_zona_almacen_view" groups="group_empresa_def"/>
+
+        
+
+        <!-- <menuitem id="menu_root" name="Miprueba"/>
+
+        <menuitem id="menu_modelos_miprueba" name="Modelos del Modulo Miprueba" parent="menu_root"/>
+        <menuitem id="menu_miprueba" name="Miprueba" parent="menu_modelos_miprueba" action="act_open_empresa_view"/> -->
+    </data>
+</odoo>

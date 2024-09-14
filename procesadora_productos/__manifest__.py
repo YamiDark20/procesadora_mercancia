@@ -30,6 +30,7 @@
         'views/guia_movilizacion_view.xml',
         'views/mercancia_view.xml',
         'views/factura_traslado.xml',
+        'views/almacen_view.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],

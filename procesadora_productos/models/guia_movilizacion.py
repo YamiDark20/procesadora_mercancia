@@ -11,4 +11,17 @@ class GuiaMovilizacion(models.Model):
     vehiculo = fields.Char(string='Vehiculo Usado', required=True)
     direccion_envio = fields.Char(string='Dir. Envio')
     direccion_entrega = fields.Char(string='Dir. Entrega')
-    sequence_number = fields.Char(string='Secuencia', required=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('empresa.guia_movilizacion'), readonly=True)
+    sequence_number = fields.Char(string='Secuencia', index=True, readonly=True)
+
+    @api.model
+    def create(self, vals):
+        if 'sequence_number' not in vals:
+            vals['sequence_number'] = self.env['ir.sequence'].next_by_code('empresa.guia_movilizacion')
+        return super(GuiaMovilizacion, self).create(vals)
+    
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"{record.sequence_number} - {record.vehiculo_id}"
+            result.append((record.id, name))
+        return result

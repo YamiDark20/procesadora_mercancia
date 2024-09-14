@@ -6,3 +6,4 @@ access_empresa_mercancia,empresa.mercancia,model_empresa_mercancia,group_empresa
 access_traslado_mercancia,traslado.mercancia,model_traslado_mercancia,group_empresa_def,1,1,1,1
 access_empresa_almacen,empresa.almacen,model_empresa_almacen,group_empresa_def,1,1,1,1
 access_zona_almacen,zona.almacen,model_zona_almacen,group_empresa_def,1,1,1,1
+access_zona_mercancia,zona.mercancia,model_zona_mercancia,group_empresa_def,1,1,1,1

@@ -22,8 +22,16 @@ class FacturaTraslado(models.Model):
     descuento = fields.Integer(string="Descuento", default=0)
     total = fields.Float(string="Total", compute='compute_total', store=False)
 
-    sequence_number = fields.Char(string='Secuencia', required=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('traslado.factura'), readonly=True)
+    # sequence_number = fields.Char(string='Secuencia', required=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('traslado.factura'), readonly=True)
     id_guia_movilizacion = fields.Char(string='ID Guia Mov.', related='guia_movilizacion_id.sequence_number', store=False)
+
+    sequence_number = fields.Char(string='Secuencia', index=True, readonly=True)
+
+    @api.model
+    def create(self, vals):
+        if 'sequence_number' not in vals:
+            vals['sequence_number'] = self.env['ir.sequence'].next_by_code('traslado.factura')
+        return super(FacturaTraslado, self).create(vals)
     
     # nombre_moneda = fields.Char(string='Nombre de la Moneda', compute='compute_nombre_moneda', store=False)
 

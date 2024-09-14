@@ -31,6 +31,7 @@
         'views/mercancia_view.xml',
         'views/factura_traslado.xml',
         'views/almacen_view.xml',
+        'views/zona_almacen_view.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],

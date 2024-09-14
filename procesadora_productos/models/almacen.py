@@ -11,4 +11,17 @@ class Almacen(models.Model):
 
     zona_almacen_ids = fields.One2many('zona.almacen', 'almacen_id', string='Id Zona')
 
-    sequence_number = fields.Char(string='Secuencia', required=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('empresa.almacen'), readonly=True)
+    sequence_number = fields.Char(string='ID Almacen', index=True, readonly=True)
+
+    @api.model
+    def create(self, vals):
+        if 'sequence_number' not in vals:
+            vals['sequence_number'] = self.env['ir.sequence'].next_by_code('empresa.almacen')
+        return super(Almacen, self).create(vals)
+    
+    # def name_get(self):
+    #     result = []
+    #     for record in self:
+    #         name = f"{record.sequence_number} - {record.vehiculo_id}"
+    #         result.append((record.id, name))
+    #     return result

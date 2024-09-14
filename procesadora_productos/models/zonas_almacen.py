@@ -28,3 +28,13 @@ class ZonaAlmacen(models.Model):
     ], string='Sector', copy=False, tracking=True, default='almacenamiento', required=True)
 
     # sequence_number = fields.Char(string='Secuencia', required=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('empresa.almacen'), readonly=True)
+
+    sequence_number = fields.Char(string='ID. Zona', index=True, readonly=True)
+
+    zona_mercancia_ids = fields.One2many('zona.mercancia', 'zona_almacen_id', string='Id Zona Almacen')
+
+    @api.model
+    def create(self, vals):
+        if 'sequence_number' not in vals:
+            vals['sequence_number'] = self.env['ir.sequence'].next_by_code('zona.almacen')
+        return super(ZonaAlmacen, self).create(vals)

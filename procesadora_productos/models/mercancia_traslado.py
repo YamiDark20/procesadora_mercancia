@@ -13,6 +13,7 @@ class MercanciaTraslado(models.Model):
     precio = fields.Float(string='Precio', required=True)
 
     num_producto = fields.Integer(string="Num. Mercancia", default=0, required=True)
+    productos_sacados = fields.Integer(string="Sacados", default=0)
     cant_mercancia = fields.Selection([
         ('por_kilo', 'Por Kilo'),
         ('toneladas', 'Toneladas'),
@@ -23,3 +24,12 @@ class MercanciaTraslado(models.Model):
         ('regular', 'Regular'),
         ('danada', 'Dañada'),
     ], string='Estado', copy=False, tracking=True, default='buena')
+
+    # sequence_number = fields.Char(string='Id. Mercancia', index=True, readonly=True)
+
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"{record.mercancia_id.sequence_number}/{record.factura_traslado_id.sequence_number} - {record.mercancia_id.nombre}"
+            result.append((record.id, name))
+        return result

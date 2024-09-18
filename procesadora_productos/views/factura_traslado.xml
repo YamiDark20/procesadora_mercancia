@@ -53,6 +53,7 @@
                                         <field name="mercancia_id" />
                                         <field name="cant_mercancia" />
                                         <field name="num_producto" />
+                                        <field name="productos_sacados" />
                                         <field name="precio" />
                                         <field name="estado" />
                                     </tree>

@@ -9,3 +9,5 @@ from . import mercancia_traslado
 from . import almacen
 from . import zonas_almacen
 from . import zona_mercancia
+from . import mercancia_movilizacion
+from . import solicitud_movilizacion

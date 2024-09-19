@@ -2,48 +2,34 @@
 <odoo>
     <data>
 
-        <record id="view_solicitud_mov_tree" model="ir.ui.view">
-            <field name="name">movilizacion.solicitud.tree</field>
-            <field name="model">movilizacion.solicitud</field>
-            
-            <!-- <field name="inherit_id" ref="base.view_partner_tree"/>
+        <record id="view_puertosolicitud_mov_tree" model="ir.ui.view">
+            <field name="name">movilizacion.puertosolicitud.tree</field>
+            <field name="model">movilizacion.puertosolicitud</field>
             <field name="arch" type="xml">
-                <field name="name" position="before">
-                    <field name="nif"/>
-                </field>
-                <field name="name" position="after">
-                    <field name="tipo"/>
-                </field>
-            </field> -->
-            <field name="arch" type="xml">
-                <tree string="Solicitud de Movilizacion">
+                <tree string="Solicitud de Movilizacion Puerto">
                     <field name="sequence_number" />
                     <field name="fecharealizacion" />
-                    <field name="zona_mercancia_id" />
+                    <field name="zona_almacen_entrega_id" />
                     <field name="informacion" />
                 </tree>
             </field>
         </record>
-        <record id="view_solicitud_mov_form" model="ir.ui.view">
-            <field name="name">movilizacion.solicitud.form</field>
-            <field name="model">movilizacion.solicitud</field>
+        <record id="view_puertosolicitud_mov_form" model="ir.ui.view">
+            <field name="name">movilizacion.puertosolicitud.form</field>
+            <field name="model">movilizacion.puertosolicitud</field>
             <field name="arch" type="xml">
-                <form string="Solicitud de Movilizacion">
+                <form string="Solicitud de Movilizacion Puerto">
                     <sheet>
-                        <h1 class="fw-normal">Solicitud de Movilizacion <field name="sequence_number" class="fw-bold" /></h1>
+                        <h1 class="fw-normal">Solicitud de Movilizacion Puerto <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
                             <field name="fecharealizacion" />
-                            <!-- <field name="zona_mercancia_id" /> -->
+                            <field name="zona_almacen_entrega_id" attrs="{'readonly': [('id', '!=', False)]}" />
                         </group>
                         <notebook colspan="4">
                             <page string="Mercancias">
                                 <field name="mercancia_movilizacion_ids">
                                     <tree string="Mercancias" editable="bottom">
-                                        <field name="direccion_mercancia" />
-                                        <field name="mercancia_traslado_id" attrs="{'invisible': [('direccion_mercancia', '=', 'zona_almacen')], 'nolabel': [('direccion_mercancia', '=', 'zona_almacen')]}" invisible="context.get('direccion_mercancia') == 'zona_almacen'" />
-
-                                        <field name="zona_mercancia_id" attrs="{'invisible': [('direccion_mercancia', '=', 'puerto')], 'nolabel': [('direccion_mercancia', '=', 'puerto')]}" invisible="context.get('direccion_mercancia') == 'puerto'" />
-                                        <field name="zona_almacen_entrega_id" />
+                                        <field name="mercancia_traslado_id"/>
                                         <field name="cantidad" />
                                         <field name="cant_mercancia" />
                                         <field name="precio" />
@@ -59,24 +45,24 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="act_open_solicitud_mov_view">
-            <field name="name">Almacen</field>
+        <record model="ir.actions.act_window" id="act_open_puertosolicitud_mov_view">
+            <field name="name">Solicitud de Movilizacion Puerto</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">movilizacion.solicitud</field>
+            <field name="res_model">movilizacion.puertosolicitud</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Create Solicitud de Movilizacion.
+                    Create Solicitud de Movilizacion Puerto.
                 </p>
             </field>
         </record>
 
-        <record model="ir.sequence" id="seq_solicitud_mov">
-            <field name="name">Solicitud de Movilizacion</field>
-            <field name="code">movilizacion.solicitud</field>
-            <field name="prefix">SM</field>
+        <record model="ir.sequence" id="seq_puertosolicitud_mov">
+            <field name="name">Solicitud de Movilizacion Puerto</field>
+            <field name="code">movilizacion.puertosolicitud</field>
+            <field name="prefix">SMP</field>
             <field name="padding">3</field>
             <field name="company_id" eval="False" />
         </record>
@@ -84,7 +70,7 @@
         <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
 
         <!-- <menuitem id="menu_factura_traslado_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/> -->
-        <menuitem id="submenu_solicitud_mov" name="Solicitud de Movilizacion" parent="menu_empresa_child" action="act_open_solicitud_mov_view" groups="group_empresa_def"/>
+        <menuitem id="submenu_puertosolicitud_mov" name="Solicitud de Movilizacion Puerto" parent="menu_empresa_child" action="act_open_puertosolicitud_mov_view" groups="group_empresa_def"/>
 
         
 

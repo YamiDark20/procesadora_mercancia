@@ -26,6 +26,29 @@ class MercanciaMovilizacionPuerto(models.Model):
                 self.cantidad = self.mercancia_traslado_id.num_producto
             elif self.cantidad < 0:
                 self.cantidad = 0
+    
+    @api.model
+    def create(self, vals):
+        if 'sequence_number' not in vals:
+            traslado = self.env['traslado.mercancia'].browse(vals['mercancia_traslado_id'])
+            traslado.productos_sacados += vals['cantidad']
+
+            solicitud_movilizacion = self.env['movilizacion.puertosolicitud'].browse(vals['solicitud_movilizacion_id'])
+
+            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', solicitud_movilizacion.zona_almacen_entrega_id.id)], limit=1)
+
+            if zona_mercancia:
+                zona_mercancia.cantidad += vals['cantidad']
+            else:
+                self.env['zona.mercancia'].create({
+                    'mercancia_id': traslado.mercancia_id.id,
+                    'zona_almacen_id': solicitud_movilizacion.zona_almacen_entrega_id.id,
+                    'cantidad': vals['cantidad'],
+                    'precio': vals['precio'],
+                })
+
+            # vals['sequence_number'] = self.env['ir.sequence'].next_by_code('empresa.mercancia')
+        return super(MercanciaMovilizacionPuerto, self).create(vals)
 
     def write(self, vals):
         for record in self:
@@ -75,3 +98,12 @@ class MercanciaMovilizacionPuerto(models.Model):
 
             res = super(MercanciaMovilizacionPuerto, self).write(vals)
             return res
+        
+    def unlink(self):
+        for record in self:
+            traslado_mercancia_anterior = self.env['traslado.mercancia'].browse(record.mercancia_traslado_id.id)
+            traslado_mercancia_anterior.productos_sacados -= record.cantidad
+
+            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+            zona_mercancia.cantidad -= record.cantidad
+        return super(MercanciaMovilizacionPuerto, self).unlink()

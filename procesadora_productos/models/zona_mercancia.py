@@ -22,3 +22,10 @@ class ZonaMercancia(models.Model):
     def update_cantidad(self, cantidad_a_anadir):
         for record in self:
             record.cantidad += cantidad_a_anadir
+
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"{record.zona_almacen_id.sequence_number} - {record.mercancia_id.sequence_number}/{record.mercancia_id.nombre}"
+            result.append((record.id, name))
+        return result

@@ -22,3 +22,10 @@ class SolicitudMovilizacionPuerto(models.Model):
         if 'sequence_number' not in vals:
             vals['sequence_number'] = self.env['ir.sequence'].next_by_code('movilizacion.puertosolicitud')
         return super(SolicitudMovilizacionPuerto, self).create(vals)
+    
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"{record.sequence_number}"
+            result.append((record.id, name))
+        return result

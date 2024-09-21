@@ -19,6 +19,13 @@ class Almacen(models.Model):
             vals['sequence_number'] = self.env['ir.sequence'].next_by_code('empresa.almacen')
         return super(Almacen, self).create(vals)
     
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"{record.sequence_number}"
+            result.append((record.id, name))
+        return result
+    
     # def name_get(self):
     #     result = []
     #     for record in self:

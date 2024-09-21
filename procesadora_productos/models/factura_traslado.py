@@ -33,6 +33,13 @@ class FacturaTraslado(models.Model):
             vals['sequence_number'] = self.env['ir.sequence'].next_by_code('traslado.factura')
         return super(FacturaTraslado, self).create(vals)
     
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"{record.sequence_number}"
+            result.append((record.id, name))
+        return result
+    
     # nombre_moneda = fields.Char(string='Nombre de la Moneda', compute='compute_nombre_moneda', store=False)
 
     # def compute_nombre_moneda(self):

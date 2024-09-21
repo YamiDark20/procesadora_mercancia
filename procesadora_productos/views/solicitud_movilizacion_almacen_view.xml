@@ -37,7 +37,7 @@
                                 </field>
                             </page>
                             <page string="Informacion">
-                                <field name="informacion" />
+                                <field name="informacion" class="border w-100 pb-5" />
                             </page>
                         </notebook>
                     </sheet>

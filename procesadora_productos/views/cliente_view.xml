@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <data>
+        <!-- <template id="assets_backend" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/procesadora_productos/static/css/cliente.css"/>
+            </xpath>
+        </template> -->
+
+        <record id="view_cliente_tree" model="ir.ui.view">
+            <field name="name">empresa.cliente.tree</field>
+            <field name="model">empresa.cliente</field>
+            <field name="arch" type="xml">
+                <tree string="Cliente">
+                    <field name="cedula" />
+                    <field name="nombre" />
+                    <field name="apellido" />
+                    <field name="email" />
+                    <field name="telefono" widget="phone" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_cliente_form" model="ir.ui.view">
+            <field name="name">empresa.cliente.form</field>
+            <field name="model">empresa.cliente</field>
+            <field name="arch" type="xml">
+                <form string="Cliente">
+                    <sheet>
+                        <h1 class="div_titulo_cliente" attrs="{'invisible': [('id', '==', False)]}">
+                            <field name="nombre" attrs="{'readonly': [('id', '!=', False)]}"  style="margin-right: 10px;" />  <field name="apellido" attrs="{'readonly': [('id', '!=', False)]}" /></h1>
+                        <group>
+                            <group>
+                                <field name="cedula" attrs="{'readonly': [('id', '!=', False)]}" />
+                                <field name="nombre" />
+                                <field name="apellido" />
+                            </group>
+                            <group>
+                                <field name="email" />
+                                <field name="telefono" widget="phone" />
+                                <field name="direccion" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_cliente_view">
+            <field name="name">Cliente</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">empresa.cliente</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Cliente.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="submenu_cliente" name="Cliente" parent="menu_empresa_child" action="act_open_cliente_view" groups="group_empresa_def"/>
+    </data>
+</odoo>

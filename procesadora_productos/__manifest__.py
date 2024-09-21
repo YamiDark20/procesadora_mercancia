@@ -34,9 +34,14 @@
         'views/zona_almacen_view.xml',
         'views/solicitud_movilizacion_puerto_view.xml',
         'views/solicitud_movilizacion_almacen_view.xml',
+        'views/cliente_view.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],
+
+    # 'css': [
+    #     'static/css/cliente.css',
+    # ],
     # 'icon': '/procesadora_productos/static/description/Logo_UDO.svg.png',
     # only loaded in demonstration mode
     # 'demo': [

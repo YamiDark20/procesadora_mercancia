@@ -8,7 +8,7 @@ class Cliente(models.Model):
     _description = 'Informacion del cliente'
 
     
-    cedula = fields.Char(string='Cedula', index=True, readonly=True, required=True)
+    cedula = fields.Char(string='Cedula', index=True, required=True)
     nombre = fields.Char(string='Nombre', required=True)
     apellido = fields.Char(string='Apellido', required=True)
     telefono = fields.Char(string='Telefono', required=True)

@@ -1,65 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
     <data>
-        <!-- <template id="assets_backend" inherit_id="web.assets_backend">
-            <xpath expr="." position="inside">
-                <link rel="stylesheet" type="text/css" href="/procesadora_productos/static/css/cliente.css"/>
-            </xpath>
-        </template> -->
-
-        <record id="view_cliente_tree" model="ir.ui.view">
-            <field name="name">empresa.cliente.tree</field>
-            <field name="model">empresa.cliente</field>
+        <record id="view_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
             <field name="arch" type="xml">
-                <tree string="Cliente">
-                    <field name="cedula" />
-                    <field name="nombre" />
-                    <field name="apellido" />
-                    <field name="email" />
-                    <field name="telefono" widget="phone" />
-                </tree>
+                <xpath expr="//field[@name='display_name']" position="attributes">
+                    <attribute name="string">Nombre</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="string">Ciudad</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="string">Pais</attribute>
+                </xpath>
             </field>
         </record>
-        <record id="view_cliente_form" model="ir.ui.view">
-            <field name="name">empresa.cliente.form</field>
-            <field name="model">empresa.cliente</field>
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <form string="Cliente">
-                    <sheet>
-                        <h1 class="div_titulo_cliente" attrs="{'invisible': [('id', '==', False)]}">
-                            <field name="nombre" attrs="{'readonly': [('id', '!=', False)]}"  style="margin-right: 10px;" />  <field name="apellido" attrs="{'readonly': [('id', '!=', False)]}" /></h1>
-                        <group>
-                            <group>
-                                <field name="cedula" attrs="{'readonly': [('id', '!=', False)]}" />
-                                <field name="nombre" />
-                                <field name="apellido" />
-                            </group>
-                            <group>
-                                <field name="email" />
-                                <field name="telefono" widget="phone" />
-                                <field name="direccion" />
-                            </group>
-                        </group>
-                    </sheet>
-                </form>
+                
+                <xpath expr="//field[@name='company_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='title']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                
+                <xpath expr="//field[@name='function']" position="attributes">
+                    <attribute name="string">Posicion de Trabajo</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street']" position="attributes">
+                    <attribute name="placeholder">Calle ...</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="attributes">
+                    <attribute name="placeholder">Calle 2 ...</attribute>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="placeholder">Ciudad ...</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="placeholder">Estado ...</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="placeholder">Pais ...</attribute>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="string">Telefono</attribute>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="string">Correo Electrónico</attribute>
+                </xpath>
+                <xpath expr="//page[@name='contact_addresses']" position="attributes">
+                    <attribute name="string">Contactos &amp; Direcciones</attribute>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/field[@name='comment']" position="attributes">
+                    <attribute name="string">Notas</attribute>
+                    <attribute name="placeholder">Notas Internas</attribute>
+                </xpath>
+
+                
+                <xpath expr="//label[@for='street']" position="attributes">
+                    <attribute name="string">Direcciones</attribute>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/field[@name='name']" position="attributes">
+                    <attribute name="string">Nombre de Contacto</attribute>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/field[@name='title']" position="attributes">
+                    <attribute name="string">Titulo</attribute>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/field[@name='function']" position="attributes">
+                    <attribute name="string">Posicion de Trabajo</attribute>
+                </xpath>
+                
+                <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                    <attribute name="string">Compras &amp; Ventas</attribute>
+                </xpath>
+                <xpath expr="//page[@name='internal_notes']" position="attributes">
+                    <attribute name="string">Notas Internas</attribute>
+                </xpath>
+                <xpath expr="//page[@name='internal_notes']/field[@name='comment']" position="attributes">
+                    <attribute name="string">Nota Internas ...</attribute>
+                </xpath>
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="act_open_cliente_view">
+
+        <record model="ir.actions.act_window" id="action_cliente">
             <field name="name">Cliente</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">empresa.cliente</field>
+            <field name="res_model">res.partner</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="domain">[('is_company', '=', False)]</field>
+            <field name="context">{'default_customer':1, 'default_supplier':0}</field>
+            <field name="filter" eval="True"/>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Create Cliente.
+                    Haz click para agregar un cliente.
                 </p>
             </field>
         </record>
 
-        <menuitem id="submenu_cliente" name="Cliente" parent="menu_empresa_child" action="act_open_cliente_view" groups="group_empresa_def"/>
+        <menuitem id="submenu_cliente" name="Cliente" parent="menu_empresa_child" action="action_cliente" groups="group_empresa_def"/>
     </data>
 </odoo>

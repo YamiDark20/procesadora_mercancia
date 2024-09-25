@@ -14,3 +14,4 @@ from . import solicitud_movilizacion_almacen
 from . import mercancia_movilizacion_puerto
 from . import solicitud_movilizacion_de_puerto
 from . import cliente
+from . import res_partner

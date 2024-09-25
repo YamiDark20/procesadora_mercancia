@@ -70,7 +70,8 @@
         <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
 
         <!-- <menuitem id="menu_factura_traslado_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/> -->
-        <menuitem id="submenu_puertosolicitud_mov" name="Solicitud de Movilizacion Puerto" parent="menu_empresa_child" action="act_open_puertosolicitud_mov_view" groups="group_empresa_def"/>
+        <menuitem id="menu_root_solicitud" name="Solicitud" parent="menu_root_empresa" groups="group_empresa_def"/>
+        <menuitem id="submenu_puertosolicitud_mov" name="Movilizacion de Puerto" parent="menu_root_solicitud" action="act_open_puertosolicitud_mov_view" groups="group_empresa_def"/>
 
         
 

@@ -12,3 +12,5 @@ access_movilizacion_almacensolicitud,movilizacion.almacensolicitud,model_moviliz
 access_movilizacion_puertomercancia,movilizacion.puertomercancia,model_movilizacion_puertomercancia,group_empresa_def,1,1,1,1
 access_movilizacion_puertosolicitud,movilizacion.puertosolicitud,model_movilizacion_puertosolicitud,group_empresa_def,1,1,1,1
 access_empresa_cliente,empresa.cliente,model_empresa_cliente,group_empresa_def,1,1,1,1
+access_factura_mercancia,factura.mercancia,model_factura_mercancia,group_empresa_def,1,1,1,1
+access_factura_pago,factura.pago,model_factura_pago,group_empresa_def,1,1,1,1

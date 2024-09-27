@@ -15,3 +15,5 @@ from . import mercancia_movilizacion_puerto
 from . import solicitud_movilizacion_de_puerto
 from . import cliente
 from . import res_partner
+from . import mercancia_factura
+from . import pago

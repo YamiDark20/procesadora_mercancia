@@ -35,6 +35,7 @@
         'views/solicitud_movilizacion_puerto_view.xml',
         'views/solicitud_movilizacion_almacen_view.xml',
         'views/cliente_view.xml',
+        'views/factura_pago_view.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],

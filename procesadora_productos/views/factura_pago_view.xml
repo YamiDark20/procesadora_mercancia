@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_factura_pago_tree" model="ir.ui.view">
+            <field name="name">factura.pago.tree</field>
+            <field name="model">factura.pago</field>
+            
+            <!-- <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="nif"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="tipo"/>
+                </field>
+            </field> -->
+            <field name="arch" type="xml">
+                <tree string="Factura">
+                    <field name="sequence_number" />
+                    <field name="fecharealizacion" />
+                    <field name="cliente_id" />
+                    <!-- <field name="gasto_nacional" />
+                    <field name="gasto_extrajero" /> -->
+                    <field name="metodopago" />
+                    <field name="banco" />
+                    <field name="totalpagado" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_factura_pago_form" model="ir.ui.view">
+            <field name="name">factura.pago.form</field>
+            <field name="model">factura.pago</field>
+            <field name="arch" type="xml">
+                <form string="Factura">
+                    <sheet>
+                        <h1 class="fw-normal">Factura <field name="sequence_number" class="fw-bold" /></h1>
+                        <group>
+                            <group>
+                                <field name="fecharealizacion" />
+                                <field name="cliente_id" />
+                            </group>
+                            <group>
+                                <field name="num_cuenta" />
+                                <field name="banco" />
+                                <field name="metodopago" />
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Mercancias">
+                                <field name="mercancia_factura_ids">
+                                    <tree string="Mercancias" editable="bottom">
+                                        <field name="zona_mercancia_id" />
+                                        <field name="nombre_mercancia" />
+                                        <field name="cantidad" />
+                                        <field name="descuento" />
+                                        <field name="precio" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <div class="d-flex flex-column w-100 align-items-end">
+                            <p class="fs-3 my-0 text-end"><strong>Total</strong>: Bs <field name="totalpagado" /></p>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_factura_pago_view">
+            <field name="name">Factura</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">factura.pago</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Factura.
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.sequence" id="seq_factura_pago">
+            <field name="name">Factura</field>
+            <field name="code">factura.pago</field>
+            <field name="prefix">F</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
+
+        <!-- <menuitem id="menu_factura_traslado_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/> -->
+        <menuitem id="submenu_factura_pago" name="Factura" parent="menu_guia_movilizacion_child" action="act_open_factura_pago_view" groups="group_empresa_def"/>
+
+        
+
+        <!-- <menuitem id="menu_root" name="Miprueba"/>
+
+        <menuitem id="menu_modelos_miprueba" name="Modelos del Modulo Miprueba" parent="menu_root"/>
+        <menuitem id="menu_miprueba" name="Miprueba" parent="menu_modelos_miprueba" action="act_open_empresa_view"/> -->
+    </data>
+</odoo>

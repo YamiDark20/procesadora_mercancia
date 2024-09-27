@@ -13,13 +13,23 @@ class Pago(models.Model):
     # zona_mercancia_id = fields.Many2one('zona.mercancia', string='Zona de Entrega')
     mercancia_factura_ids = fields.One2many('factura.mercancia', 'factura_pago_id', string='Mercancias')
 
-    totalpagado = fields.Float(string='Total',required=True)
+    totalpagado = fields.Float(string='Total', compute='compute_total', store=False)
     isfinal = fields.Boolean(string="Pagado?", default=True)
 
-    metodopago = fields.Char(string='Metodo', required=True)
+    metodopago = fields.Selection([
+        ('pago_movil', 'Pago Movil'),
+        ('efectivo', 'Efectivo'),
+        ('por_tarjeta', 'Por Tarjeta'),
+    ], string='Metodo de Pago', copy=False, tracking=True, default='efectivo')
 
     num_cuenta = fields.Char(string='Num. Cuenta', required=True, size=9)
-    banco = fields.Char(string='Banco', required=True, size=9)
+    banco = fields.Selection([
+        ('banco_vzla', 'Banco de Vzla'),
+        ('mercantil', 'Mercantil'),
+        ('banesco', 'Banesco'),
+        ('banco_provincial', 'Banco Provincial'),
+    ], string='Tipo de Banco', copy=False, tracking=True, default='banco_vzla')
+    # fields.Char(string='Banco', required=True, size=9)
 
     informacion = fields.Text(string='Informacion')
 
@@ -37,3 +47,12 @@ class Pago(models.Model):
             name = f"{record.sequence_number}"
             result.append((record.id, name))
         return result
+    
+    @api.depends('mercancia_factura_ids')
+    def compute_total(self):
+        for record in self:
+            total_mercancia = 0
+            for mercancia in record.mercancia_factura_ids:
+                total_mercancia += (mercancia.precio -(mercancia.precio * (mercancia.descuento / 100))) * mercancia.cantidad
+            # monto_total = total_mercancia
+            record.totalpagado = total_mercancia

@@ -9,7 +9,7 @@ class MercanciaFactura(models.Model):
 
     factura_pago_id = fields.Many2one('factura.pago', string='Factura', required=True)
     
-    zona_mercancia_id = fields.Many2one('zona.mercancia', string='Almacen de la Mercancia')
+    zona_mercancia_id = fields.Many2one('zona.mercancia', string='ID Mercancia')
     # mercancia_id = fields.Many2one('empresa.mercancia', string='Id. Mercancia')
     nombre_mercancia = fields.Char(string="Nombre de Mercancia", related='zona_mercancia_id.mercancia_id.nombre', required=True)
 

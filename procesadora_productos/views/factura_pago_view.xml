@@ -33,6 +33,13 @@
             <field name="model">factura.pago</field>
             <field name="arch" type="xml">
                 <form string="Factura">
+                    <header>
+                        <button  name="set_to_no_pagado" states="no_pagado" string="No Pagado" type="object" class="oe_highlight"/>
+                        <button  name="set_to_por_cuota" states="por_cuota" string="Por Cuota" type="object" class="oe_highlight"/>
+                        <button  name="set_to_pagado" states="pagado" string="Pagado" type="object" class="oe_highlight"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="no_pagado,por_cuota,pagado" statusbar_colors='{"No Pagado":"blue","Por Cuota":"red","Pagado":"grey"}'/>
+                    </header>
                     <sheet>
                         <h1 class="fw-normal">Factura <field name="sequence_number" class="fw-bold" /></h1>
                         <group>

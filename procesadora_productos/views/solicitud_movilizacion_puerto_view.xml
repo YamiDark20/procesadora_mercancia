@@ -32,6 +32,7 @@
                                         <field name="mercancia_traslado_id"/>
                                         <field name="cantidad" />
                                         <field name="cant_mercancia" />
+                                        <field name="estado" />
                                         <field name="precio" />
                                     </tree>
                                 </field>

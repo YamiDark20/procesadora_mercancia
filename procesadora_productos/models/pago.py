@@ -14,7 +14,13 @@ class Pago(models.Model):
     mercancia_factura_ids = fields.One2many('factura.mercancia', 'factura_pago_id', string='Mercancias')
 
     totalpagado = fields.Float(string='Total', compute='compute_total', store=False)
-    isfinal = fields.Boolean(string="Pagado?", default=True)
+    state = fields.Selection([
+        ('no_pagado', 'No Pagado'),
+        ('por_cuota', 'Por Cuota'),
+        ('pagado', 'Pagado'),
+
+    ], string='Pagado?', readonly=True, copy=False, index=True, tracking=True, default='no_pagado')
+    # fields.Boolean(string="Pagado?", default=True)
 
     metodopago = fields.Selection([
         ('pago_movil', 'Pago Movil'),
@@ -22,7 +28,7 @@ class Pago(models.Model):
         ('por_tarjeta', 'Por Tarjeta'),
     ], string='Metodo de Pago', copy=False, tracking=True, default='efectivo')
 
-    num_cuenta = fields.Char(string='Num. Cuenta', required=True, size=9)
+    num_cuenta = fields.Char(string='Num. Cuenta', size=9)
     banco = fields.Selection([
         ('banco_vzla', 'Banco de Vzla'),
         ('mercantil', 'Mercantil'),
@@ -40,6 +46,15 @@ class Pago(models.Model):
         if 'sequence_number' not in vals:
             vals['sequence_number'] = self.env['ir.sequence'].next_by_code('factura.pago')
         return super(Pago, self).create(vals)
+    
+    def set_to_no_pagado(self):
+        return self.write({'state': 'por_cuota'})
+
+    def set_to_por_cuota(self):
+        return self.write({'state': 'pagado'})
+
+    def set_to_pagado(self):
+        return self.write({'state': 'pagado'})
     
     def name_get(self):
         result = []

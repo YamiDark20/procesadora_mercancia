@@ -11,6 +11,7 @@ class MercanciaMovilizacionPuerto(models.Model):
     mercancia_traslado_id = fields.Many2one('traslado.mercancia', string='Envio de Puerto')
 
     precio = fields.Float(string='Precio', related='mercancia_traslado_id.precio', required=True)
+    estado = fields.Selection(string="Estado", related='mercancia_traslado_id.estado', required=True)
 
     cantidad = fields.Integer(string="Num. Mercancia", default=0, required=True)
     cant_mercancia = fields.Selection([
@@ -35,7 +36,7 @@ class MercanciaMovilizacionPuerto(models.Model):
 
             solicitud_movilizacion = self.env['movilizacion.puertosolicitud'].browse(vals['solicitud_movilizacion_id'])
 
-            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', solicitud_movilizacion.zona_almacen_entrega_id.id)], limit=1)
+            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', solicitud_movilizacion.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
 
             if zona_mercancia:
                 zona_mercancia.cantidad += vals['cantidad']
@@ -44,7 +45,8 @@ class MercanciaMovilizacionPuerto(models.Model):
                     'mercancia_id': traslado.mercancia_id.id,
                     'zona_almacen_id': solicitud_movilizacion.zona_almacen_entrega_id.id,
                     'cantidad': vals['cantidad'],
-                    'precio': vals['precio'],
+                    'estado': traslado.estado,
+                    'precio': traslado.precio,
                 })
 
             # vals['sequence_number'] = self.env['ir.sequence'].next_by_code('empresa.mercancia')
@@ -62,12 +64,20 @@ class MercanciaMovilizacionPuerto(models.Model):
                     traslado_mercancia_anterior = self.env['traslado.mercancia'].browse(record.mercancia_traslado_id.id)
                     traslado_mercancia_anterior.productos_sacados -= cantidad_anterior
 
-                    #Cambio de mercancia (validation)
+                    #######
                     if traslado.mercancia_id.id == traslado_mercancia_anterior.mercancia_id.id:
-                        zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
-                        zona_mercancia.cantidad += (nueva_cantidad - cantidad_anterior)
+                        if traslado.estado == traslado_mercancia_anterior.estado:
+                            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
+                            zona_mercancia.cantidad += (nueva_cantidad - cantidad_anterior)
+                        else:
+                            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
+                            zona_mercancia.cantidad += nueva_cantidad
+
+                            zona_mercancia_anterior = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado_mercancia_anterior.estado)], limit=1)
+
+                            zona_mercancia_anterior.cantidad -=  cantidad_anterior
                     else:
-                        zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+                        zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
 
                         if zona_mercancia:
                             zona_mercancia.cantidad += nueva_cantidad
@@ -76,17 +86,39 @@ class MercanciaMovilizacionPuerto(models.Model):
                                 'mercancia_id': traslado.mercancia_id.id,
                                 'zona_almacen_id': record.solicitud_movilizacion_id.zona_almacen_entrega_id.id,
                                 'cantidad': nueva_cantidad,
+                                'estado': traslado.estado,
                                 'precio': record.precio,
                             })
 
-                        zona_mercancia_anterior = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+                        zona_mercancia_anterior = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado_mercancia_anterior.estado)], limit=1)
 
                         zona_mercancia_anterior.cantidad -=  cantidad_anterior
+
+                    #Cambio de mercancia (validation)
+                    # if traslado.mercancia_id.id == traslado_mercancia_anterior.mercancia_id.id:
+                    #     zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+                    #     zona_mercancia.cantidad += (nueva_cantidad - cantidad_anterior)
+                    # else:
+                    #     zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+
+                    #     if zona_mercancia:
+                    #         zona_mercancia.cantidad += nueva_cantidad
+                    #     else:
+                    #         self.env['zona.mercancia'].create({
+                    #             'mercancia_id': traslado.mercancia_id.id,
+                    #             'zona_almacen_id': record.solicitud_movilizacion_id.zona_almacen_entrega_id.id,
+                    #             'cantidad': nueva_cantidad,
+                    #             'precio': record.precio,
+                    #         })
+
+                    #     zona_mercancia_anterior = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+
+                    #     zona_mercancia_anterior.cantidad -=  cantidad_anterior
                 else:
                     traslado_mercancia_anterior = self.env['traslado.mercancia'].browse(record.mercancia_traslado_id.id)
                     traslado_mercancia_anterior.productos_sacados += (nueva_cantidad - cantidad_anterior)
 
-                    zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+                    zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado_mercancia_anterior.estado)], limit=1)
                     zona_mercancia.cantidad += (nueva_cantidad - cantidad_anterior)
             else:
                 if 'mercancia_traslado_id' in vals:
@@ -96,6 +128,37 @@ class MercanciaMovilizacionPuerto(models.Model):
                     traslado_mercancia_anterior = self.env['traslado.mercancia'].browse(record.mercancia_traslado_id.id)
                     traslado_mercancia_anterior.productos_sacados -= cantidad_anterior
 
+                    #######
+                    if traslado.mercancia_id.id == traslado_mercancia_anterior.mercancia_id.id:
+                        # if traslado.estado == traslado_mercancia_anterior.estado:
+                        #     zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
+                        #     zona_mercancia.cantidad += (nueva_cantidad - cantidad_anterior)
+                        # else:
+                        if traslado.estado == traslado_mercancia_anterior.estado:
+                            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
+                            zona_mercancia.cantidad += cantidad_anterior
+
+                            zona_mercancia_anterior = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado_mercancia_anterior.estado)], limit=1)
+
+                            zona_mercancia_anterior.cantidad -=  cantidad_anterior
+                    else:
+                        zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado.estado)], limit=1)
+
+                        if zona_mercancia:
+                            zona_mercancia.cantidad += cantidad_anterior
+                        else:
+                            self.env['zona.mercancia'].create({
+                                'mercancia_id': traslado.mercancia_id.id,
+                                'zona_almacen_id': record.solicitud_movilizacion_id.zona_almacen_entrega_id.id,
+                                'cantidad': cantidad_anterior,
+                                'estado': traslado.estado,
+                                'precio': traslado.precio,
+                            })
+
+                        zona_mercancia_anterior = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado_mercancia_anterior.estado)], limit=1)
+
+                        zona_mercancia_anterior.cantidad -=  cantidad_anterior
+
             res = super(MercanciaMovilizacionPuerto, self).write(vals)
             return res
         
@@ -104,6 +167,6 @@ class MercanciaMovilizacionPuerto(models.Model):
             traslado_mercancia_anterior = self.env['traslado.mercancia'].browse(record.mercancia_traslado_id.id)
             traslado_mercancia_anterior.productos_sacados -= record.cantidad
 
-            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id)], limit=1)
+            zona_mercancia = self.env['zona.mercancia'].search([('mercancia_id', '=', traslado_mercancia_anterior.mercancia_id.id),('zona_almacen_id', '=', record.solicitud_movilizacion_id.zona_almacen_entrega_id.id), ('estado', '=', traslado_mercancia_anterior.estado)], limit=1)
             zona_mercancia.cantidad -= record.cantidad
         return super(MercanciaMovilizacionPuerto, self).unlink()

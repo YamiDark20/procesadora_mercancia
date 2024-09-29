@@ -30,8 +30,10 @@
                                 <field name="mercancia_movilizacion_ids">
                                     <tree string="Mercancias" editable="bottom">
                                         <field name="zona_mercancia_id"/>
+                                        <field name="zona_almacen_solicitud_id" attrs="{'invisible': True}" invisible="1" />
                                         <field name="cantidad" />
                                         <field name="cant_mercancia" />
+                                        <field name="estado" />
                                         <field name="precio" />
                                     </tree>
                                 </field>

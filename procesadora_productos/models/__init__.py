@@ -17,3 +17,4 @@ from . import cliente
 from . import res_partner
 from . import mercancia_factura
 from . import pago
+from . import abono

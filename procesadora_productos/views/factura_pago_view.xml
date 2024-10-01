@@ -59,6 +59,7 @@
                                     <tree string="Mercancias" editable="bottom">
                                         <field name="zona_mercancia_id" />
                                         <field name="nombre_mercancia" />
+                                        <field name="estado" />
                                         <field name="cantidad" />
                                         <field name="descuento" />
                                         <field name="precio" />

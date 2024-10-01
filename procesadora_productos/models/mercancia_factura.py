@@ -12,6 +12,7 @@ class MercanciaFactura(models.Model):
     zona_mercancia_id = fields.Many2one('zona.mercancia', string='ID Mercancia')
     # mercancia_id = fields.Many2one('empresa.mercancia', string='Id. Mercancia')
     nombre_mercancia = fields.Char(string="Nombre de Mercancia", related='zona_mercancia_id.mercancia_id.nombre', required=True)
+    estado = fields.Selection(string="Estado", related='zona_mercancia_id.estado')
 
     precio = fields.Float(string='Precio', related='zona_mercancia_id.precio', required=True)
 
@@ -25,6 +26,14 @@ class MercanciaFactura(models.Model):
                 self.cantidad = self.zona_mercancia_id.cantidad
             elif self.cantidad < 0:
                 self.cantidad = 0
+                
+    @api.onchange('descuento')
+    def descuento_update(self):
+        if self.descuento:
+            if self.descuento > 80:
+                self.descuento = 80
+            elif self.descuento < 0:
+                self.descuento = 0
     
     @api.model
     def create(self, vals):

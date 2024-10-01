@@ -14,3 +14,4 @@ access_movilizacion_puertosolicitud,movilizacion.puertosolicitud,model_movilizac
 access_empresa_cliente,empresa.cliente,model_empresa_cliente,group_empresa_def,1,1,1,1
 access_factura_mercancia,factura.mercancia,model_factura_mercancia,group_empresa_def,1,1,1,1
 access_factura_pago,factura.pago,model_factura_pago,group_empresa_def,1,1,1,1
+access_abono_mercancia,abono.mercancia,model_abono_mercancia,group_empresa_def,1,1,1,1

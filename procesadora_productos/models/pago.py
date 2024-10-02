@@ -13,7 +13,7 @@ class Pago(models.Model):
     # zona_mercancia_id = fields.Many2one('zona.mercancia', string='Zona de Entrega')
     mercancia_factura_ids = fields.One2many('factura.mercancia', 'factura_pago_id', string='Mercancias')
 
-    totalpagado = fields.Float(string='Total', compute='compute_total', store=False)
+    totalpagado = fields.Float(string='Total', compute='compute_total', store=True)
     state = fields.Selection([
         ('no_pagado', 'No Pagado'),
         ('por_cuota', 'Por Cuota'),

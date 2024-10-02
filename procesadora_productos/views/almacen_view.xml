@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-
+        <!-- <template id="assets_backend" name="custom assets">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/scss" href="/procesadora_productos/static/src/css/cliente.css"/>
+            </xpath>
+        </template> -->
+        
         <record id="view_almacen_tree" model="ir.ui.view">
             <field name="name">empresa.almacen.tree</field>
             <field name="model">empresa.almacen</field>

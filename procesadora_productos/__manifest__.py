@@ -36,13 +36,14 @@
         'views/solicitud_movilizacion_almacen_view.xml',
         'views/cliente_view.xml',
         'views/factura_pago_view.xml',
+        'views/abono_factura_view.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],
 
-    # 'css': [
-    #     'static/css/cliente.css',
-    # ],
+    'css': [
+        'static/css/cliente.css',
+    ],
     # 'icon': '/procesadora_productos/static/description/Logo_UDO.svg.png',
     # only loaded in demonstration mode
     # 'demo': [

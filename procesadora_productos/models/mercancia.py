@@ -8,8 +8,8 @@ class Mercancia(models.Model):
     _description = 'Informacion de una mercancia'
 
     nombre = fields.Char(string='Nombre', required=True)
-    descripcion = fields.Text(string='Descripcion')
-    marca = fields.Char(string='Marca')
+    descripcion = fields.Text(string='Descripcion', default='Sin descripcion')
+    marca = fields.Char(string='Marca', default='Sin marca')
     tipo = fields.Selection([
         ('perecedera', 'Perecedera'),
         ('no_perecedera', 'No Perecedera'),

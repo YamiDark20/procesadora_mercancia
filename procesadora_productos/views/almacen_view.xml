@@ -21,7 +21,7 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Almacen">
+                <tree string="Almacen" class="tabla_view">
                     <field name="sequence_number" />
                     <field name="sucursal" />
                 </tree>
@@ -32,6 +32,10 @@
             <field name="model">empresa.almacen</field>
             <field name="arch" type="xml">
                 <form string="Almacen">
+                    <!--  create="0"
+                    <header>
+                        <button name="action_create" type="object" string="Crear" class="btn-primary"/>
+                    </header> -->
                     <sheet>
                         <h1 class="fw-normal">Almacen <field name="sequence_number" class="fw-bold" /></h1>
                         <group>

@@ -16,11 +16,11 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Mercancia">
+                <tree string="Mercancia" class="tabla_view">
                     <field name="nombre" />
                     <field name="tipo" />
-                    <field name="marca" />
-                    <field name="descripcion" />
+                    <field name="marca" decoration-warning="marca == 'Sin marca'" />
+                    <field name="descripcion" decoration-warning="descripcion == 'Sin descripcion'" />
                 </tree>
             </field>
         </record>

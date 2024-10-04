@@ -16,21 +16,18 @@
             <field name="name">Empresa Kanban</field>
             <field name="model">empresa.empresa</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban class="my-kanban">
                     <field name='id'/>
                     <templates>
-                        <t t-name="kanban-box" class=" p-2 d-flex align-items-middle justify-content-center">
+                        <t t-name="kanban-box" class="oe_kanban_card">
                             <div class="oe_kanban_global_click ">
-                                <div class="o_kanban_image d-flex flex-column align-middle justify-content-center h-100">
-                                    <img t-att-src="kanban_image('empresa.empresa', 'image', record.id.value)"  class=" align-middle"/>
-                                    <!-- <img  t-att-src="kanban_image('empresa.empresa', 'record.contacto_id.image_1920', record.id.value)"/> -->
-                                </div>
+                                <img t-att-src="kanban_image('empresa.empresa', 'image', record.id.value)"  class="oe_kanban_image"/>
                                 <div class="oe_kanban_details">
-                                    <strong class=" h-100">
+                                    <strong class="">
                                         <ul class="">
-                                            <li class="mb-2">Nombre :<field name="contacto_id" /></li>
-                                            <li class="mb-2">NIF :<field name="nif" /></li>
-                                            <li>Tipo :<field name="tipo"/></li>
+                                            <li class="oe_kanban_state">Nombre :<field name="contacto_id" /></li>
+                                            <li class="oe_kanban_state">NIF :<field name="nif" /></li>
+                                            <li class="oe_kanban_state">Tipo :<field name="tipo"/></li>
                                         </ul>
                                     </strong>
                                 </div>
@@ -55,7 +52,7 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Empresa">
+                <tree string="Empresa" class="tabla_view">
                     <field name="nif" />
                     <field name="name" />
                     <field name="tipo" />
@@ -158,7 +155,7 @@
             <field name="name">empresa.empresa.form</field>
             <field name="model">empresa.empresa</field>
             <field name="arch" type="xml">
-                <form string="Empresa">
+                <form string="Empresa" class="my-form">
                     <sheet>
                         <group>
                             <!-- <field name="nif"/>
@@ -166,17 +163,17 @@
                             <field name="name"/>
                             <field name="email"/> -->
                             <group>
-                                <field name="nif"/>
-                                <field name="tipo"/>
+                                <field name="nif" class="oe_field"/>
+                                <field name="tipo" class="my-many2one-field"/>
                             </group>
                             <group>
-                                <field name="contacto_id" domain="[('is_company', '=', True)]"/>
+                                <field name="contacto_id" class="o_field_widget_we"/>
                             </group>
                         </group>
                         <notebook colspan="4">
                             <page string="Info. Adicional">
                                 <group>
-                                    <field name="descripcion" class="border w-100 pb-5"/>
+                                    <field name="descripcion" class="textarea_form"/>
                                 </group>
                                 
                             </page>

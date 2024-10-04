@@ -41,9 +41,9 @@
         # 'views/templates.xml',
     ],
 
-    'css': [
-        'static/css/cliente.css',
-    ],
+    'assets': {
+        'web.assets_backend': ['procesadora_productos/static/src/css/cliente.css'],
+    },
     # 'icon': '/procesadora_productos/static/description/Logo_UDO.svg.png',
     # only loaded in demonstration mode
     # 'demo': [

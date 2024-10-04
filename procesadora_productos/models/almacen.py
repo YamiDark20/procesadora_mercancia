@@ -19,6 +19,19 @@ class Almacen(models.Model):
             vals['sequence_number'] = self.env['ir.sequence'].next_by_code('empresa.almacen')
         return super(Almacen, self).create(vals)
     
+    # @api.model
+    # def action_create(self):
+    #     # Lógica para crear un nuevo registro
+    #     new_record = self.env['empresa.almacen'].create({'sucursal': self.sucursal, 'zona_almacen_ids': self.zona_almacen_ids})
+        
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'res_model': 'your.model',
+        #     'view_mode': 'form',
+        #     'res_id': new_record.id,
+        #     'target': 'current',
+        # }
+    
     def name_get(self):
         result = []
         for record in self:

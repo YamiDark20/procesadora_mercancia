@@ -20,7 +20,7 @@
                     <field name="sequence_number" />
                     <field name="fechaculminacion" />
                     <field name="factura_pago_id" />
-                    <field name="state" />
+                    <field name="state" widget="badge" decoration-warning="state == 'pendiente'" decoration-success="state == 'completado'" />
                     <!-- <field name="gasto_nacional" />
                     <field name="gasto_extrajero" /> -->
                     <field name="monto" />

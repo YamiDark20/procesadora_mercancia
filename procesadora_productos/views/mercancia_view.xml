@@ -28,20 +28,18 @@
             <field name="name">empresa.mercancia.form</field>
             <field name="model">empresa.mercancia</field>
             <field name="arch" type="xml">
-                <form string="Mercancia">
+                <form string="Mercancia" class="my-form">
                     <sheet>
                         <h1 class="fw-normal">Mercancia <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
-                            <group>
-                                <field name="nombre" />
-                                <field name="tipo" />
-                                <field name="marca" />
-                            </group>
+                                <field name="nombre" class="oe_field"/>
+                                <field name="tipo" class="select-form"/>
+                                <field name="marca" class="oe_field" />
                         </group>
                         <notebook colspan="4">
                             <page string="Descripcion">
                                 <group>
-                                    <field name="descripcion" class="border w-100 pb-5"/>
+                                    <field name="descripcion" class="textarea_form"/>
                                 </group>
                                 
                             </page>

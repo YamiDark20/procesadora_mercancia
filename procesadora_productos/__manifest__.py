@@ -42,7 +42,7 @@
     ],
 
     'assets': {
-        'web.assets_backend': ['procesadora_productos/static/src/css/cliente.css'],
+        'web.assets_backend': ['procesadora_productos/static/src/css/views_style.css'],
     },
     # 'icon': '/procesadora_productos/static/description/Logo_UDO.svg.png',
     # only loaded in demonstration mode

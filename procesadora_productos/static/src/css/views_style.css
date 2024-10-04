@@ -1,0 +1,143 @@
+
+/* Estilos para la vista tree */
+.o_list_view .o_data_row {
+    /* background-color: #e7e7e7 !important; */
+    color: #000000 !important;
+    /* border-color: #e7e7e7 !important; */
+}
+
+.fila_form, .o_list_button_delete{
+    background-color: #f8f8f8 !important;
+    color: #000000 !important;
+    border-color: #f8f8f8 !important;
+}
+
+.fila_form:hover, .o_list_button_delete:hover{
+    background-color: #efefef !important;
+    border-color: #efefef !important;
+}
+
+/* .o_list_view .o_data_row:hover {
+    background-color: #f6f6f6 !important;
+    border-color: #f6f6f6 !important;
+} */
+
+.tabla_view table thead > tr > th {
+    background-color: #3d3d3d !important;
+    border-color: #3d3d3d !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    color: #ffffff !important;
+}
+
+/* Estilos para la vista kanban */
+.my-kanban {
+    background-color: #f9f9f9 !important; 
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+}
+
+.oe_kanban_global_click{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #3d3d3d !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+}
+
+.oe_kanban_global_click:hover{
+    background-color: #4f4f4f !important;
+}
+
+.oe_kanban_card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    margin-bottom: 15px !important;
+    border-radius: 8px !important;
+    width: 45% !important;
+    height: 45% !important;
+}
+
+.oe_kanban_details {
+    padding: 10px !important;
+}
+
+.oe_kanban_image {
+    border-radius: 8px 8px 0 0 !important; 
+    width: 9rem !important; 
+    height: 9rem !important;
+}
+
+/* .oe_kanban_title {
+    font-weight: bold !important;
+    color: #333 !important;
+} */
+
+.oe_kanban_state {
+    font-style: italic !important;
+}
+
+/* Estilos para la vista form */
+.my-form {
+    background-color: #f9f9f9 !important;
+    border: 1px solid #ccc !important; 
+    padding: 20px !important; 
+    border-radius: 8px !important; 
+}
+
+.my-form .oe_field {
+    margin-bottom: 15px !important; 
+    border: 1.5px solid #000 !important; 
+    border-radius: 4px !important; 
+    padding: 6px !important; 
+    width: 100% !important;
+    transition: border-color 0.3s !important; 
+}
+
+.my-form h1 {
+    margin-bottom: 15px !important; 
+}
+
+/* .my-form .oe_button {
+    background-color: #007bff !important; 
+    color: white !important; 
+    border-radius: 5px !important; 
+}
+
+.my-form .oe_button:hover {
+    background-color: #ccc !important; 
+} */
+
+.select-form {
+    border: 1.5px solid #000 !important; 
+    border-radius: 4px !important; 
+    padding: 6px !important;
+    margin-bottom: 15px !important;
+    width: 100% !important;
+    background-color: #f9f9f9 !important; 
+    transition: border-color 0.3s !important; 
+}
+
+.many2one_field {
+    line-height: 30px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    margin-bottom: 15px !important;
+    border: 1.5px solid #000 !important;
+    width: 100% !important;
+}
+
+.many2one_field:hover {
+    border: 0.5px solid #000 !important;
+}
+
+.textarea_form {
+    height: 100px !important;
+    border-radius: 4px !important;
+    padding-left: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 1.5px solid #000 !important;
+    width: 100% !important;
+}

@@ -16,7 +16,7 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Guia_Movilizacion">
+                <tree string="Guia_Movilizacion" class="tabla_view">
                     <field name="vehiculo_id" />
                     <field name="vehiculo" />
                     <field name="direccion_envio" />
@@ -28,17 +28,17 @@
             <field name="name">empresa.guia_movilizacion.form</field>
             <field name="model">empresa.guia_movilizacion</field>
             <field name="arch" type="xml">
-                <form string="Empresa">
+                <form string="Empresa" class="my-form">
                     <sheet>
                         <h1 class="fw-normal">Guia de Movilización <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
                             <group>
-                                <field name="vehiculo_id" />
-                                <field name="vehiculo" />
+                                <field name="vehiculo_id" class="oe_field" />
+                                <field name="vehiculo" class="oe_field" />
                             </group>
                             <group>
-                                <field name="direccion_envio" />
-                                <field name="direccion_entrega" />
+                                <field name="direccion_envio" class="oe_field" />
+                                <field name="direccion_entrega" class="oe_field" />
                             </group>
                         </group>
                     </sheet>

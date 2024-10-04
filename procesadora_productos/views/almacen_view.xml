@@ -31,7 +31,7 @@
             <field name="name">empresa.almacen.form</field>
             <field name="model">empresa.almacen</field>
             <field name="arch" type="xml">
-                <form string="Almacen">
+                <form string="Almacen" class="my-form">
                     <!--  create="0"
                     <header>
                         <button name="action_create" type="object" string="Crear" class="btn-primary"/>
@@ -39,16 +39,17 @@
                     <sheet>
                         <h1 class="fw-normal">Almacen <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
-                            <field name="sucursal" />
+                            <field name="sucursal" class="oe_field" />
                         </group>
                         <notebook colspan="4">
                             <page string="Zonas de Almacen">
                                 <field name="zona_almacen_ids">
-                                    <tree string="Zonas" editable="bottom">
-                                        <field name="ubicacion" />
-                                        <field name="espacio" />
-                                        <field name="estado" />
-                                        <field name="sector" />
+                                    <tree string="Zonas" editable="bottom" class="tabla_view">
+                                        <field name="ubicacion" class="fila_form" />
+                                        <field name="espacio" class="fila_form" />
+                                        <field name="estado" class="fila_form" />
+                                        <field name="sector" class="fila_form" />
+                                        <!-- <button name="action_delete" type="object" class="oe_link oe_stat_button o_list_button_delete" icon="fa-trash-o"/> -->
                                     </tree>
                                 </field>
                             </page>

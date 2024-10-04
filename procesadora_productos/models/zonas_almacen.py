@@ -45,3 +45,6 @@ class ZonaAlmacen(models.Model):
             name = f"{record.sequence_number} - Almacen  {record.almacen_id.sequence_number}"
             result.append((record.id, name))
         return result
+
+    def action_delete(self):
+        pass

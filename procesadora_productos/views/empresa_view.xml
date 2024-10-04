@@ -164,10 +164,10 @@
                             <field name="email"/> -->
                             <group>
                                 <field name="nif" class="oe_field"/>
-                                <field name="tipo" class="my-many2one-field"/>
+                                <field name="tipo" class="select-form"/>
                             </group>
                             <group>
-                                <field name="contacto_id" class="o_field_widget_we"/>
+                                <field name="contacto_id" class="many2one_field"/>
                             </group>
                         </group>
                         <notebook colspan="4">

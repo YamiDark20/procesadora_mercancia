@@ -6,7 +6,7 @@
             <field name="name">movilizacion.almacensolicitud.tree</field>
             <field name="model">movilizacion.almacensolicitud</field>
             <field name="arch" type="xml">
-                <tree string="Solicitud de Movilizacion Almacen">
+                <tree string="Solicitud de Movilizacion Almacen" class="tabla_view">
                     <field name="sequence_number" />
                     <field name="fecharealizacion" />
                     <field name="zona_almacen_entrega_id" />
@@ -18,17 +18,17 @@
             <field name="name">movilizacion.almacensolicitud.form</field>
             <field name="model">movilizacion.almacensolicitud</field>
             <field name="arch" type="xml">
-                <form string="Solicitud de Movilizacion Almacen">
+                <form string="Solicitud de Movilizacion Almacen" class="my-form">
                     <sheet>
                         <h1 class="fw-normal">Solicitud de Movilizacion Almacen <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
-                            <field name="fecharealizacion" />
-                            <field name="zona_almacen_entrega_id" attrs="{'readonly': [('id', '!=', False)]}" />
+                            <field name="fecharealizacion" class="many2one_field" />
+                            <field name="zona_almacen_entrega_id" attrs="{'readonly': [('id', '!=', False)]}" class="many2one_field" />
                         </group>
                         <notebook colspan="4">
                             <page string="Mercancias">
                                 <field name="mercancia_movilizacion_ids">
-                                    <tree string="Mercancias" editable="bottom">
+                                    <tree string="Mercancias" editable="bottom" class="tabla_view">
                                         <field name="zona_mercancia_id"/>
                                         <field name="zona_almacen_solicitud_id" attrs="{'invisible': True}" invisible="1" />
                                         <field name="cantidad" />

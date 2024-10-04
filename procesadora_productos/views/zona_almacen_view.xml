@@ -16,7 +16,7 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Zona del Almacen">
+                <tree string="Zona del Almacen" class="tabla_view">
                     <field name="sequence_number" />
                     <field name="ubicacion" />
                     <field name="espacio" />
@@ -29,18 +29,18 @@
             <field name="name">zona.almacen.form</field>
             <field name="model">zona.almacen</field>
             <field name="arch" type="xml">
-                <form string="Zona del Almacen">
+                <form string="Zona del Almacen" class="my-form">
                     <sheet>
                         <h1 class="fw-normal">Zona del Almacen <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
-                            <field name="ubicacion" />
-                            <field name="espacio" />
-                            <field name="sector" />
+                            <field name="ubicacion" class="oe_field" />
+                            <field name="espacio" class="select-form" />
+                            <field name="sector" class="select-form" />
                         </group>
                         <notebook colspan="4">
                             <page string="Mercancias">
                                 <field name="zona_mercancia_ids">
-                                    <tree string="Mercancias">
+                                    <tree string="Mercancias" class="tabla_view">
                                         <field name="mercancia_id" />
                                         <field name="cantidad" />
                                         <field name="estado" editable="True" />

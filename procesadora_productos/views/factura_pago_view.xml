@@ -16,7 +16,7 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Factura">
+                <tree string="Factura" class="tabla_view">
                     <field name="sequence_number" />
                     <field name="fecharealizacion" />
                     <field name="cliente_id" />
@@ -24,6 +24,7 @@
                     <field name="gasto_extrajero" /> -->
                     <field name="metodopago" />
                     <field name="banco" />
+                    <field name="state" widget="badge" decoration-warning="state == 'no_pagado'" decoration-info="state == 'por_cuota'" decoration-success="state == 'pagado'" />
                     <field name="totalpagado" />
                 </tree>
             </field>
@@ -32,7 +33,7 @@
             <field name="name">factura.pago.form</field>
             <field name="model">factura.pago</field>
             <field name="arch" type="xml">
-                <form string="Factura">
+                <form string="Factura" class="my-form">
                     <header>
                         <button  name="set_to_no_pagado" states="no_pagado" string="No Pagado" type="object" class="oe_highlight"/>
                         <button  name="set_to_por_cuota" states="por_cuota" string="Por Cuota" type="object" class="oe_highlight"/>
@@ -44,19 +45,19 @@
                         <h1 class="fw-normal">Factura <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
                             <group>
-                                <field name="fecharealizacion" />
-                                <field name="cliente_id" />
+                                <field name="fecharealizacion" class="many2one_field center_many2one_field" />
+                                <field name="cliente_id" class="many2one_field center_many2one_field" />
                             </group>
                             <group>
-                                <field name="num_cuenta" />
-                                <field name="banco" />
-                                <field name="metodopago" />
+                                <field name="num_cuenta" class="oe_field center_many2one_field" />
+                                <field name="banco" class="select-form center_many2one_field" />
+                                <field name="metodopago" class="select-form center_many2one_field" />
                             </group>
                         </group>
                         <notebook colspan="4">
                             <page string="Mercancias">
                                 <field name="mercancia_factura_ids">
-                                    <tree string="Mercancias" editable="bottom">
+                                    <tree string="Mercancias" editable="bottom" class="tabla_view">
                                         <field name="zona_mercancia_id" />
                                         <field name="nombre_mercancia" />
                                         <field name="estado" />
@@ -72,6 +73,28 @@
                         </div>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record id="view_factura_pago_search" model="ir.ui.view">
+            <field name="name">factura.pago.search</field>
+            <field name="model">factura.pago</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Factura_Pago">
+                    <field name="cliente_id" />
+                    <field name="fecharealizacion" />
+                    <field name="state" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter name="cliente_id" string="Cliente"
+                            domain="[]" context="{'group_by':'cliente_id'}" />
+                        <filter name="fecharealizacion" string="Fecha de Realización"
+                            domain="[]" context="{'group_by':'fecharealizacion'}" />
+                        <filter name="state" string="Estado"
+                            domain="[]" context="{'group_by':'state'}" />
+                    </group>
+                </search>
             </field>
         </record>
 
@@ -100,7 +123,7 @@
         <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
 
         <!-- <menuitem id="menu_factura_traslado_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/> -->
-        <menuitem id="submenu_factura_pago" name="Factura" parent="menu_guia_movilizacion_child" action="act_open_factura_pago_view" groups="group_empresa_def"/>
+        <menuitem id="submenu_factura_pago" name="Factura de Cliente" parent="menu_guia_movilizacion_child" action="act_open_factura_pago_view" groups="group_empresa_def"/>
 
         
 

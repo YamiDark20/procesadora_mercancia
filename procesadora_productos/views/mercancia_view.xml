@@ -49,6 +49,25 @@
             </field>
         </record>
 
+        <record id="view_mercancia_search" model="ir.ui.view">
+            <field name="name">empresa.mercancia.search</field>
+            <field name="model">empresa.mercancia</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Mercancia">
+                    <field name="tipo" />
+                    <field name="marca" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter name="tipo" string="Tipo"
+                            domain="[]" context="{'group_by':'tipo'}" />
+                        <filter name="marca" string="Marca"
+                            domain="[]" context="{'group_by':'marca'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_mercancia_view">
             <field name="name">Mercancia</field>
             <field name="type">ir.actions.act_window</field>

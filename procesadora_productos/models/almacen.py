@@ -35,7 +35,7 @@ class Almacen(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            name = f"{record.sequence_number}"
+            name = f" Almacen - {record.sequence_number}"
             result.append((record.id, name))
         return result
     

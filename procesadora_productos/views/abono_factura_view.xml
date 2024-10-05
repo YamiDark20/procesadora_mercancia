@@ -16,7 +16,7 @@
                 </field>
             </field> -->
             <field name="arch" type="xml">
-                <tree string="Abono">
+                <tree string="Abono" class="tabla_view">
                     <field name="sequence_number" />
                     <field name="fechaculminacion" />
                     <field name="factura_pago_id" />
@@ -32,7 +32,7 @@
             <field name="name">abono.mercancia.form</field>
             <field name="model">abono.mercancia</field>
             <field name="arch" type="xml">
-                <form string="Abono">
+                <form string="Abono" class="my-form">
                     <header>
                         <button  name="set_to_pendiente" states="pendiente" string="Pendiente" type="object" class="oe_highlight"/>
                         <button  name="set_to_completado" states="completado" string="Completado" type="object" class="oe_highlight"/>
@@ -43,13 +43,13 @@
                         <h1 class="fw-normal">Abono <field name="sequence_number" class="fw-bold" /></h1>
                         <group>
                             
-                            <field name="fechaculminacion" />
-                            <field name="factura_pago_id" />
-                            <field name="abono" />
+                            <field name="fechaculminacion" class="many2one_field center_many2one_field" />
+                            <field name="factura_pago_id" class="many2one_field center_many2one_field" />
+                            <field name="abono" class="oe_field center_many2one_field" />
                         </group>
                         <notebook colspan="4">
                             <page string="Observacion">
-                                <field name="observacion"  class="border w-100 pb-5" />
+                                <field name="observacion"  class="textarea_form" />
                             </page>
                         </notebook>
                         <div class="d-flex flex-column w-100 align-items-end">
@@ -57,6 +57,28 @@
                         </div>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record id="view_abono_mercancia_search" model="ir.ui.view">
+            <field name="name">abono.mercancia.search</field>
+            <field name="model">abono.mercancia</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Abono">
+                    <field name="factura_pago_id" />
+                    <field name="fechaculminacion" />
+                    <field name="state" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter name="factura_pago_id" string="Factura"
+                            domain="[]" context="{'group_by':'factura_pago_id'}" />
+                        <filter name="fechaculminacion" string="Fecha de Expiración"
+                            domain="[]" context="{'group_by':'fechaculminacion'}" />
+                        <filter name="state" string="Estado"
+                            domain="[]" context="{'group_by':'state'}" />
+                    </group>
+                </search>
             </field>
         </record>
 
@@ -85,7 +107,7 @@
         <!-- <menuitem id="menu_root_empresa" name="Procesador Productos" groups="group_empresa_def"/> -->
 
         <!-- <menuitem id="menu_factura_traslado_child" name="Guia de Movilizacion" parent="menu_root_empresa" groups="group_empresa_def"/> -->
-        <menuitem id="submenu_abono_mercancia" name="Abono" parent="menu_guia_movilizacion_child" action="act_open_abono_mercancia_view" groups="group_empresa_def"/>
+        <menuitem id="submenu_abono_mercancia" name="Abono de Factura" parent="menu_guia_movilizacion_child" action="act_open_abono_mercancia_view" groups="group_empresa_def"/>
 
         
 

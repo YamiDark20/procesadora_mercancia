@@ -36,6 +36,7 @@
                             <field name="ubicacion" class="oe_field" />
                             <field name="espacio" class="select-form" />
                             <field name="sector" class="select-form" />
+                            <field name="almacen_id" attrs="{'readonly': [('id', '!=', False)]}" class="many2one_field start_many2one_field" />
                         </group>
                         <notebook colspan="4">
                             <page string="Mercancias">

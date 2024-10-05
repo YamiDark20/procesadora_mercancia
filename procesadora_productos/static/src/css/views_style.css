@@ -81,9 +81,9 @@
 /* Estilos para la vista form */
 .my-form {
     background-color: #f9f9f9 !important;
-    border: 1px solid #ccc !important; 
-    padding: 20px !important; 
-    border-radius: 8px !important; 
+    /* border: 1px solid #ccc !important;  */
+    /* padding: 20px !important;  */
+    /* border-radius: 8px !important;  */
 }
 
 .my-form .oe_field {
@@ -106,7 +106,7 @@
 }
 
 .my-form .oe_button:hover {
-    background-color: #ccc !important; 
+    background-color: #d2d2ff !important; 
 } */
 
 .select-form {
@@ -130,6 +130,18 @@
 
 .many2one_field:hover {
     border: 0.5px solid #000 !important;
+}
+
+.center_many2one_field {
+    text-align: center !important;
+    /* padding-left: 1px !important; */
+    /* background-color: #d2d2ff !important; */
+}
+
+.start_many2one_field {
+    text-align: start !important;
+    padding-left: 5px !important;
+    /* background-color: #d2d2ff !important; */
 }
 
 .textarea_form {

@@ -14,7 +14,7 @@ class ZonaMercancia(models.Model):
         ('regular', 'Regular'),
         ('danada', 'Dañada'),
     ], string='Estado', copy=False, tracking=True, default='buena')
-    zona_almacen_id = fields.Many2one('zona.almacen', string='ID Zona Almacen', required=True)
+    zona_almacen_id = fields.Many2one('zona.almacen', string='ID Zona Almacen')
     
     precio = fields.Float(string='Precio', required=True)
     # sequence_number = fields.Char(string='Secuencia', required=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('empresa.almacen'), readonly=True)

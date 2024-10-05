@@ -47,6 +47,25 @@
             </field>
         </record>
 
+        <record id="view_almacensolicitud_mov_search" model="ir.ui.view">
+            <field name="name">movilizacion.almacensolicitud.search</field>
+            <field name="model">movilizacion.almacensolicitud</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Solicitud de Movilizacion Almacen">
+                    <field name="fecharealizacion" />
+                    <field name="zona_almacen_entrega_id" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter name="fecharealizacion" string="Fecha de Realización"
+                            domain="[]" context="{'group_by':'fecharealizacion'}" />
+                        <filter name="zona_almacen_entrega_id" string="Zona de Entrega"
+                            domain="[]" context="{'group_by':'zona_almacen_entrega_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_almacensolicitud_mov_view">
             <field name="name">Solicitud de Movilizacion Almacen</field>
             <field name="type">ir.actions.act_window</field>

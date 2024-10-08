@@ -69,3 +69,6 @@ class FacturaTraslado(models.Model):
                 record.tasa_gasto_nacional = (record.gasto_nacional / monto_total) * (100 - record.descuento)
             except:
                 record.tasa_gasto_nacional = 0.0
+
+    def print_factura_traslado(self):
+        return self.env.ref('procesadora_productos.print_factura_traslado').report_action(self)

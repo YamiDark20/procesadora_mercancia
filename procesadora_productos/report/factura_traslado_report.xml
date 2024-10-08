@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_factura_traslado">
+            <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o" class="oe_main_report">
+                        <div class="page oe_main_report">
+                            <br />
+                            <br />
+                            <h3 style="text-decoration:underline;text-align:center;font-size:2.5rem;" class="oe_margin_title"><b>Factura Traslado </b><span t-att-style="style" t-esc="o.sequence_number"/></h3>
+                            <br/>
+                            <br/>
+                            <!-- <table width="99%" style="margin-left:50px;margin-top:5px;border: None solid black;">
+                                <tr>
+                                    <td style="width:50px;height:25px" ><span>Patient: </span><span t-att-style="style" t-esc="o.lab_requestor.patient.name"/></td>
+                                    <td style="width:50px;height:25px" ><span>Test  : </span><span t-att-style="style" t-esc="o.test_request.lab_test"/></td>
+                                    <td style="width:50px;height:25px" ><span>Date: </span><span t-att-style="style" t-esc="o.lab_requesting_date"/></td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/> -->
+                            <table width="99%" style="border:1px solid black;padding-left:1.16cm;">
+                                <thead>
+                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Id Mercancia</th>
+                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Cantidad</th>
+                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Num. Mercancia</th>
+                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Precio</th>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.mercancia_traslado_ids" t-as="l">
+                                        <tr style="border:1px solid black">
+                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.mercancia_id" style="font-size:16px;"/></td>
+                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.cant_mercancia" style="font-size:16px;"/></td>
+                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.num_producto" style="font-size:16px;"/></td>
+                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.precio" style="font-size:16px;"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                        </div>
+                        <p style="page-break-after:always"></p>
+                    </t>
+            </t>
+        </template>
+    </data>
+</odoo>

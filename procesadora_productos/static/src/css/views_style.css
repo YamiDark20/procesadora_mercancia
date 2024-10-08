@@ -153,3 +153,35 @@
     border: 1.5px solid #000 !important;
     width: 100% !important;
 }
+
+.oe_main_header{
+    display: flex !important;
+    flex-direction: row !important;
+    /* justify-content: center !important;
+    align-items: center !important;
+    background-color: #3d3d3d !important;
+    color: #ffffff !important;
+    border-radius: 8px !important; */
+    width: 100% !important;
+}
+
+.oe_title_header{
+    width: 90% !important;
+}
+
+.oe_button_header{
+    width: 10% !important;
+    height: 30px !important; 
+}
+
+.oe_main_report{
+    margin: 0 0 !important;
+    padding: 0 !important; 
+    margin-top: 8px !important;
+    font-family: "Times New Roman", serif;
+}
+
+.oe_margin_title{
+    margin: 20px 20px !important;
+    padding: 20px 20px !important;
+}

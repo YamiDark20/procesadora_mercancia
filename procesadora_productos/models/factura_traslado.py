@@ -14,7 +14,7 @@ class FacturaTraslado(models.Model):
     ], string='Moneda', copy=False, tracking=True, default='bolivars', required=True)
     guia_movilizacion_id = fields.Many2one('empresa.guia_movilizacion', string='ID Guia Mov.',      required=True)
     gasto_nacional = fields.Float(string='Gasto Nac.', required=True, default=0.0)
-    tasa_gasto_nacional = fields.Float(string='Tasa Gasto Nac.', compute='compute_total', store=True)
+    tasa_gasto_nacional = fields.Float(string='Tasa Gasto Nac.', compute='compute_total', store=True, digits=(16,2))
 
     mercancia_traslado_ids = fields.One2many('traslado.mercancia', 'factura_traslado_id', string='Id Mercancia')
     
@@ -26,6 +26,13 @@ class FacturaTraslado(models.Model):
     id_guia_movilizacion = fields.Char(string='ID Guia Mov.', related='guia_movilizacion_id.sequence_number', store=False)
 
     sequence_number = fields.Char(string='Secuencia', index=True, readonly=True)
+
+    moneda_value = fields.Char(compute='_compute_moneda_value', store=False)
+
+    @api.depends('moneda')
+    def _compute_moneda_value(self):
+        for record in self:
+            record.moneda_value = dict(self._fields['moneda'].selection).get(record.moneda)
 
     @api.model
     def create(self, vals):

@@ -23,9 +23,15 @@
                                 </tr>
 
                                 <tr>
-                                    <td style="width:50%;height:25px;" ><span>Gasto Nac.: </span><span t-att-style="style" t-esc="o.gasto_nacional"/></td>
+                                    <td style="width:50%;height:25px;" ><span>Gasto Nac.: </span><span t-att-style="style" t-esc="o.moneda_value"/> <span t-att-style="style" t-esc="o.gasto_nacional"/></td>
 
-                                    <td style="width:50%;height:25px;text-align:end;" ><span>Gasto Extranjero : </span><span t-att-style="style" t-esc="o.gasto_extrajero"/></td>
+                                    <td style="width:50%;height:25px;text-align:end;" ><span>Gasto Extranjero : </span><span t-att-style="style" t-esc="o.moneda_value"/> <span t-att-style="style" t-esc="o.gasto_extrajero"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:50%;height:25px;" ><span>Dir. Envio: </span><span t-att-style="style" t-esc="o.guia_movilizacion_id.direccion_envio"/></td>
+
+                                    <td style="width:50%;height:25px;text-align:end;" ><span>Dir. Entrega: </span><span t-att-style="style" t-esc="o.guia_movilizacion_id.direccion_entrega"/></td>
                                 </tr>
                             </table>
                             <br/>
@@ -39,7 +45,7 @@
                             <br/>
                             <br/> -->
                             <table width="80%" style="border:1px solid black;margin: auto; text-align: center;">
-                                    <thead>
+                                    <thead style="background-color:#3087ff;color:#fff">
                                         <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Id Mercancia</th>
                                         <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Cantidad</th>
                                         <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Num. Mercancia</th>
@@ -47,17 +53,26 @@
                                     </thead>
                                     <tbody>
                                         <t t-foreach="o.mercancia_traslado_ids" t-as="l">
-                                            <tr style="border:1px solid black">
-                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.mercancia_id" style="font-size:16px;"/></td>
+                                            <tr style="border:1px solid black;background-color:#d9ecff;">
+                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.mercancia_id.sequence_number" style="font-size:16px;"/> - <span t-esc="l.mercancia_id.nombre" style="font-size:16px;"/></td>
                                                 <td style="border:1px solid black;text-align:center;"><span t-esc="l.cant_mercancia" style="font-size:16px;"/></td>
                                                 <td style="border:1px solid black;text-align:center;"><span t-esc="l.num_producto" style="font-size:16px;"/></td>
-                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.precio" style="font-size:16px;"/></td>
+                                                <td style="border:1px solid black;text-align:center;"><span t-att-style="style" t-esc="o.moneda_value"/> <span t-esc="l.precio" style="font-size:16px;"/></td>
                                             </tr>
                                         </t>
                                     </tbody>
                             </table>
+                            <!-- <br/> -->
                             <br/>
-                            <br/>
+                            <table width="80%" style="margin: auto;border: None solid black;">
+                                <tr>
+                                    <td style="width:100%;height:25px;text-align:end;" ><strong>Tasa de Gasto Nacional: </strong><span t-att-style="style" t-esc="o.tasa_gasto_nacional"/> %</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%;height:25px;text-align:end;" ><strong>Total: </strong><span t-att-style="style" t-esc="o.moneda_value"/> <span t-att-style="style" t-esc="o.total"/></td>
+                                </tr>
+                            </table>
                         </div>
                         <p style="page-break-after:always"></p>
                     </t>

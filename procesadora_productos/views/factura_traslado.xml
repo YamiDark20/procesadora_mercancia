@@ -36,7 +36,7 @@
                     <sheet>
                         <div class="oe_main_header">
                             <h1 class="fw-normal oe_title_header">Factura Traslado <field name="sequence_number" class="fw-bold" /></h1>
-                            <button  name="print_factura_traslado" string="Imprimir" type="object" class="oe_highlight oe_button_header"/>
+                            <button  name="print_factura_traslado" string="Imprimir" type="object" class="oe_highlight oe_button_header" attrs="{'invisible': [('id', '=', False)]}"/>
                         </div>
                         <!-- <h1 class="fw-normal">Factura Traslado <field name="sequence_number" class="fw-bold" /></h1> -->
                         <group>

@@ -9,6 +9,25 @@
                             <br />
                             <h3 style="text-decoration:underline;text-align:center;font-size:2.5rem;" class="oe_margin_title"><b>Factura Traslado </b><span t-att-style="style" t-esc="o.sequence_number"/></h3>
                             <br/>
+                            <!-- <br/> -->
+                            <!-- <div style="display:flex;">
+                                <p style="flex:1;">Fecha Realizacion: <span t-att-style="style" t-esc="o.fecharealizacion"/></p>
+
+                                <p style="flex:1;">ID Guia Mov: <span t-att-style="style" t-esc="o.guia_movilizacion_id.sequence_number"/> - <span t-att-style="style" t-esc="o.guia_movilizacion_id.vehiculo_id"/></p>
+                            </div> -->
+                            <table width="80%" style="margin: auto;border: None solid black;">
+                                <tr>
+                                    <td style="width:50%;height:25px;" ><span>Fecha: </span><span t-att-style="style" t-esc="o.fecharealizacion"/></td>
+
+                                    <td style="width:50%;height:25px;text-align:end;" ><span>Id Guia Mov.  : </span><span t-att-style="style" t-esc="o.guia_movilizacion_id.sequence_number"/> - <span t-att-style="style" t-esc="o.guia_movilizacion_id.vehiculo_id"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:50%;height:25px;" ><span>Gasto Nac.: </span><span t-att-style="style" t-esc="o.gasto_nacional"/></td>
+
+                                    <td style="width:50%;height:25px;text-align:end;" ><span>Gasto Extranjero : </span><span t-att-style="style" t-esc="o.gasto_extrajero"/></td>
+                                </tr>
+                            </table>
                             <br/>
                             <!-- <table width="99%" style="margin-left:50px;margin-top:5px;border: None solid black;">
                                 <tr>
@@ -19,23 +38,23 @@
                             </table>
                             <br/>
                             <br/> -->
-                            <table width="99%" style="border:1px solid black;padding-left:1.16cm;">
-                                <thead>
-                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Id Mercancia</th>
-                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Cantidad</th>
-                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Num. Mercancia</th>
-                                    <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Precio</th>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="o.mercancia_traslado_ids" t-as="l">
-                                        <tr style="border:1px solid black">
-                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.mercancia_id" style="font-size:16px;"/></td>
-                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.cant_mercancia" style="font-size:16px;"/></td>
-                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.num_producto" style="font-size:16px;"/></td>
-                                            <td style="border:1px solid black;text-align:center;"><span t-esc="l.precio" style="font-size:16px;"/></td>
-                                        </tr>
-                                    </t>
-                                </tbody>
+                            <table width="80%" style="border:1px solid black;margin: auto; text-align: center;">
+                                    <thead>
+                                        <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Id Mercancia</th>
+                                        <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Cantidad</th>
+                                        <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Num. Mercancia</th>
+                                        <th style="border:1px solid black;text-align:center;" width="13%" class="td4">Precio</th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.mercancia_traslado_ids" t-as="l">
+                                            <tr style="border:1px solid black">
+                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.mercancia_id" style="font-size:16px;"/></td>
+                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.cant_mercancia" style="font-size:16px;"/></td>
+                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.num_producto" style="font-size:16px;"/></td>
+                                                <td style="border:1px solid black;text-align:center;"><span t-esc="l.precio" style="font-size:16px;"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
                             </table>
                             <br/>
                             <br/>

@@ -185,3 +185,15 @@
     margin: 20px 20px !important;
     padding: 20px 20px !important;
 }
+
+.oe_info_factura_report{
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+}
+
+.oe_col_info_report{
+    display: flex !important;
+    flex-direction: column !important;
+    /* width: 50% !important; */
+}

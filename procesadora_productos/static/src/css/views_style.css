@@ -195,5 +195,7 @@
 .oe_col_info_report{
     display: flex !important;
     flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
     /* width: 50% !important; */
 }

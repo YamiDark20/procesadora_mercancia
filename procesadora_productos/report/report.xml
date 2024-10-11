@@ -28,6 +28,15 @@
             <field name="paperformat_id" ref="custom_paper_format"/>
         </record>
 
+        <record id="print_factura_pago"  model="ir.actions.report">
+            <field name="name">Factura de Pago</field>
+            <field name="model">factura.pago</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">procesadora_productos.report_factura_pago</field>
+            <field name="report_file">procesadora_productos.report_factura_pago</field>
+            <field name="paperformat_id" ref="custom_paper_format"/>
+        </record>
+
         <!-- <report
             string="Patient Card"
             id="action_report_patient_label"

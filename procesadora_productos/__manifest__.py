@@ -39,6 +39,7 @@
         'views/abono_factura_view.xml',
         'report/report.xml',
         'report/factura_traslado_report.xml',
+        'report/factura_pago_report.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],

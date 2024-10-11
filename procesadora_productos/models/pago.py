@@ -41,6 +41,13 @@ class Pago(models.Model):
 
     sequence_number = fields.Char(string='ID Factura', index=True, readonly=True)
 
+    banco_value = fields.Char(compute='_compute_banco_value', store=False)
+
+    @api.depends('banco')
+    def _compute_banco_value(self):
+        for record in self:
+            record.banco_value = dict(self._fields['banco'].selection).get(record.banco)
+
     @api.model
     def create(self, vals):
         if 'sequence_number' not in vals:
@@ -71,3 +78,6 @@ class Pago(models.Model):
                 total_mercancia += (mercancia.precio -(mercancia.precio * (mercancia.descuento / 100))) * mercancia.cantidad
             # monto_total = total_mercancia
             record.totalpagado = total_mercancia
+
+    def print_factura_pago(self):
+        return self.env.ref('procesadora_productos.print_factura_pago').report_action(self)

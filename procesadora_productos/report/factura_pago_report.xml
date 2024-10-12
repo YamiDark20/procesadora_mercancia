@@ -26,7 +26,7 @@
 
                                 <p style="flex:1;">ID Guia Mov: <span t-att-style="style" t-esc="o.guia_movilizacion_id.sequence_number"/> - <span t-att-style="style" t-esc="o.guia_movilizacion_id.vehiculo_id"/></p>
                             </div> -->
-                            <table width="80%" style="margin: auto;border: None solid black;">
+                            <table width="80%" style="margin: auto;border: None solid black;font-size:20px;">
                                 <tr>
                                     <td style="width:50%;height:25px;" ><span>Fecha: </span><span t-att-style="style" t-esc="o.fecharealizacion"/></td>
 
@@ -105,12 +105,21 @@
                                     </tbody>
                             </table>
                             <!-- <br/> -->
-                            <br/>
-                            <table width="80%" style="margin: auto;border: None solid black;">
+                            <!-- <br/> -->
+                            <div style="display: flex;align-items: end;width: 80%;margin: auto;">
+                                <table width="34%" style="margin: auto;margin-right: 0;border:1px solid black;text-align:end;align-items: self-end;border-top: 0px;">
+                                    <tr style="margin: 0;padding: 0;background-color:#d9ecff;">
+                                        <td style="width:50%;height:25px;text-align:end;border:1px solid black;border-top: 0px;" ><strong>Total: </strong></td>
+
+                                        <td style="width:50%;height:25px;text-align:end;border:1px solid black;border-top: 0px;" ><span t-att-style="style" t-esc="o.totalpagado"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- <table width="80%" style="margin: auto;border: None solid black;font-size:20px;">
                                 <tr>
                                     <td style="width:100%;height:25px;text-align:end;" ><strong>Total: </strong> <span t-att-style="style" t-esc="o.totalpagado"/></td>
                                 </tr>
-                            </table>
+                            </table> -->
                         </div>
                         <p style="page-break-after:always"></p>
                     </t>

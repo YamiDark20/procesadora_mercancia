@@ -11,6 +11,40 @@ Develop an application for a product processing company to streamline and optimi
 
 Our application is designed to manage every aspect of our food processing operations. Key features include inventory management, production scheduling, quality control tracking, and regulatory compliance. By automating these processes, we aim to increase efficiency, reduce food waste, and ensure the highest quality products for our customers.
 
+## Index
+
+* [Characteristics](#characteristics)
+* [Project Architecture](#project-architecture)
+* [Herramientas](#herramientas)
+* [Screenshots](#screenshots)
+
+## Characteristics
+
+* Manage basic information of a company.
+* Manage merchandise information.
+* Manage the warehouses that the company owns.
+* Manage the areas that a warehouse has.
+* Manage basic customer information.
+* Manage the mobilization guides that an invoice has.
+* Allow the movement of goods from a port to a warehouse area
+* Allow the movement of merchandise from one area of ​​a warehouse to another different area
+* Create invoices for the transfer of purchased merchandise.
+* Create invoices for payments of merchandise made by a customer.
+* Allow payment of a payment invoice.
+* Allow the preparation of reports on payment invoices and the transfer of goods.
+
+## Project Architecture
+
+Odoo consists of a three-tier architecture. This architecture divides the application into the following tiers (see figure below):
+
+* The presentation tier, consisting of a user interface (UI) on the web.
+* The application tier, where logic of the application resides.
+* The data tier, where data is stored and managed.
+
+The database tier stores all information and configurations of the Odoo modules. Meanwhile, on the application tier resides the Odoo server. This server stores application logic, handles communication between different modules, and provides the Object Relational Mapping (ORM) tool to transfer data from the Odoo server in Python to a PostgreSQL database server. The highest tier, which is written in Javascript, is the presentation tier (UI in a web browser).
+
+![Imagen de diagrama de capas](/media/images/3-tier-architecture.png)
+
 Odoo
 ----
 

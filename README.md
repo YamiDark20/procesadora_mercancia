@@ -15,7 +15,7 @@ Our application is designed to manage every aspect of our food processing operat
 
 * [Characteristics](#characteristics)
 * [Project Architecture](#project-architecture)
-* [Herramientas](#herramientas)
+* [Tools](#tools)
 * [Screenshots](#screenshots)
 
 ## Characteristics
@@ -44,6 +44,46 @@ Odoo consists of a three-tier architecture. This architecture divides the applic
 The database tier stores all information and configurations of the Odoo modules. Meanwhile, on the application tier resides the Odoo server. This server stores application logic, handles communication between different modules, and provides the Object Relational Mapping (ORM) tool to transfer data from the Odoo server in Python to a PostgreSQL database server. The highest tier, which is written in Javascript, is the presentation tier (UI in a web browser).
 
 ![Imagen de diagrama de capas](/media/images/3-tier-architecture.png)
+
+## Tools
+
+The following tools were used to develop the system:
+
+* **Odoo**: It is a highly customizable open source enterprise application platform, and Python is the programming language that powers its development. This respects the design pattern known as model-view-controller.
+
+* **CSS**: It is a fundamental tool to customize and stylize the user interface in Odoo.
+
+* **DataBase**: The database used is postgreSQL managed through the Odoo ORM.
+
+## Screenshots
+
+In order to use the application you must look for the custom-addons folder and inside it we place procesadora_productos. folder.
+
+### **View Companies**
+
+![View Companies](/media/images/view_companies.png)
+
+### **Create Company**
+
+![Create Company](/media/images/create_company.png)
+
+### **View Merchandise**
+
+![View merchandise](/media/images/view_merchandise.png)
+
+
+### **Create Transfer Invoice**
+
+![Create transfer invoice](/media/images/create_transfer_invoice.png)
+
+
+### **Create Port Mobilization Request**
+
+![Create Port Mobilization Request](/media/images/create_port_mobilization_request.png)
+
+### **Create a Payment Note**
+
+![Create a Payment Note](/media/images/create_payment_note.png)
 
 Odoo
 ----
